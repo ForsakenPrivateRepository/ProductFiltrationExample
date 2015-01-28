@@ -17,18 +17,23 @@ class Generator
         return $this->positions;
     }
 
-    public static function get($count)
+    public static function get($count, $avg)
     {
         $values = range(1, $count);
         $positions = array_combine($values, $values);
-        $rests = array_combine($values, range($count + 1, 2 * $count));
 
         $products = [];
 
-        $shift = 1000000;
+        $shift = $count + 1000000;
 
-        foreach ($values as $key) {
-            $products[++$shift + $key * 3] = [$positions[$key], $rests[$key]];
+        foreach ($positions as $position) {
+            $productPosition = [$position];
+
+            for ($rest = 1; $rest < $avg; $rest++) {
+                $productPosition[] = $shift + $count * $rest;
+            }
+
+            $products[++$shift] = $productPosition;
         }
 
         return new self($positions, $products);

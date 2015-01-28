@@ -7,7 +7,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 {
     public function testTime()
     {
-        $generator = Generator::get(500000);
+        $generator = Generator::get(100000, 12);
 
         $generatedProducts = $generator->getProducts();
 
