@@ -11,7 +11,9 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
         $generatedProducts = $generator->getProducts();
 
+        $startTime = microtime(true);
         $filteredProducts = Filter::execute($generator->getPositions(), $generatedProducts);
+        echo microtime(true) - $startTime;
 
         $this->assertEquals(count($generatedProducts), count($filteredProducts));
     }
