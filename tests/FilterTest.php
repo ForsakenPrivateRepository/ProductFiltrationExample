@@ -2,6 +2,7 @@
 
 use ReenExe\ProductFiltrationExample\Filter;
 use ReenExe\ProductFiltrationExample\Generator;
+use ReenExe\ProductFiltrationExample\Output;
 
 class FilterTest extends PHPUnit_Framework_TestCase
 {
@@ -16,7 +17,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
         $startTime = microtime(true);
         $filteredProducts = Filter::execute($generator->getPositions(), $generatedProducts);
-        echo microtime(true) - $startTime;
+        Output::write('time', microtime(true) - $startTime);
 
         $this->assertEquals(count($generatedProducts), count($filteredProducts));
     }
@@ -24,6 +25,8 @@ class FilterTest extends PHPUnit_Framework_TestCase
     public function dataProvider()
     {
         return [
+            [100000, 7],
+
             [500000, 2],
             [500000, 3],
             [500000, 5],

@@ -13,6 +13,7 @@ class Filter
         }
 
         $flip = call_user_func_array('array_merge', $flips);
+        Output::write('count', count($flip));
 
         return array_intersect_key($flip, array_fill_keys($positions, true));
     }
