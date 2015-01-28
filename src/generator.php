@@ -24,7 +24,7 @@ class Generator
 
         $products = [];
 
-        $shift = $count + 1000000;
+        $shift = $count + 1000000 + rand(1, $count);
 
         foreach ($positions as $position) {
             $productPosition = [$position];
